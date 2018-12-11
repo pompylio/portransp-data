@@ -1,0 +1,7 @@
+require(googlesheets)
+options(httr_oob_default=TRUE)
+googlesheets_token <- gs_auth(new_user = TRUE)
+saveRDS(googlesheets_token, "security/googlesheets_token.rds")
+require(googledrive)
+googledrive_token <- drive_auth(reset = TRUE)
+saveRDS(googledrive_token, "security/googledrive_token.rds")

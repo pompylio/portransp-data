@@ -1,0 +1,7 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+data/
+security/googledrive_token.rds
+security/googlesheets_token.rds
