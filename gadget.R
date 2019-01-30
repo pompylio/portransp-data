@@ -173,7 +173,7 @@ refresh <- function() {
             colnames(origfile) <- str_trim(colnames(origfile))
             colnames(origfile) <- gsub(" ", "_", colnames(origfile))
             colnames(origfile) <- str_to_upper(colnames(origfile))
-            if (infodata()$structure$nm_file_des %in% c("despesas_liquidacao_empenhosimpactados", "despesas_pagamento_empenhosimpactados")){
+            if (infodata()$structure$nm_file_des %in% c("despesas_liquidacao_empenhosimpactados", "despesas_pagamento_empenhosimpactados", "despesas_itemempenho")){
               origfile <- origfile %>% filter(substr(CODIGO_EMPENHO, 7, 11) == "26428")
               } else if (infodata()$structure$nm_file_des %in% c("despesas_empenho", "despesas_liquidacao", "despesas_pagamento")){
                 origfile <- origfile %>% filter(CODIGO_ORGAO == "26428")
@@ -276,8 +276,8 @@ refresh <- function() {
             colnames(origfile2) <- str_trim(colnames(origfile2))
             colnames(origfile2) <- gsub(" ", "_", colnames(origfile2))
             colnames(origfile2) <- str_to_upper(colnames(origfile2))
-            if (infodata$structure$nm_file_des %in% c("despesas_liquidacao_empenhosimpactados", "despesas_pagamento_empenhosimpactados")){
-              origfile2 <- origfile2 %>% filter(substr(COD_EMPENHO, 7, 11) == "26428")
+            if (infodata$structure$nm_file_des %in% c("despesas_liquidacao_empenhosimpactados", "despesas_pagamento_empenhosimpactados", "despesas_itemempenho")){
+              origfile2 <- origfile2 %>% filter(substr(CODIGO_EMPENHO, 7, 11) == "26428")
               } else if (infodata$structure$nm_file_des %in% c("despesas_empenho", "despesas_liquidacao", "despesas_pagamento")){
                 origfile2 <- origfile2 %>% filter(CODIGO_ORGAO == "26428")
                 } else if (infodata$structure$nm_file_des %in% c("cadastro")){
@@ -307,6 +307,7 @@ refresh <- function() {
           Sys.sleep(0.1)
           }
         })
+      if (i == 1000){saveRDS(object = origfile, file = infodata()$origfile)}
       output$create <- renderUI({""})
       output$upload <- renderUI({""})
       output$save <- renderUI({
